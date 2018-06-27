@@ -36,7 +36,7 @@ from sklearn import linear_model, datasets
 from sklearn.metrics import mean_squared_error
 #from math import floor, ceil
 import matplotlib.pyplot as plt
-'''
+
 #Load Train and Test datasets
 diabetes = datasets.load_diabetes()
 X, y = diabetes.data, diabetes.target
@@ -645,7 +645,7 @@ for index, (image, prediction) in enumerate(images_and_predictions[:4]):
     plt.title('Prediction: %i' % prediction)
 
 plt.show()
-'''
+
 #There are many hyperparameters you can tune to get better performance
 #For example, the command classifier.get_param() returns:
 #{'C': 100.0,
