@@ -1,3 +1,19 @@
+'''
+When one learns how to program, there's a tradition that the first thing you do is print "Hello World."
+Just like programming has Hello World, machine learning has MNIST.
+MNIST is a simple computer vision dataset. It consists of images of handwritten digits. It also includes labels for each image, telling us which digit it is.
+
+In this tutorial,
+-Create a MLP neural network that is a model for recognizing MNIST digits, based on looking at every pixel in the image
+-Use Tensorflow to train the model to recognize digits by having it "look" at thousands of examples
+(and run our first Tensorflow session to do so)
+-Check the model's accuracy with our test data
+
+Reference: https://www.tensorflow.org/versions/r1.0/get_started/mnist/beginners
+'''
+
+import warnings
+warnings.filterwarnings("ignore")
 import numpy as np
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -125,6 +141,8 @@ def main():
             frame1 = plt.gca()
             frame1.axes.get_xaxis().set_visible(False)
             frame1.axes.get_yaxis().set_visible(False)
+        plt.savefig('./mnist_mlp_weights.png')
+        #plt.show()
 
 if __name__ == '__main__':
     main()
