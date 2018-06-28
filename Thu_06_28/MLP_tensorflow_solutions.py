@@ -17,6 +17,8 @@ warnings.filterwarnings("ignore")
 import numpy as np
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
+import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 import pdb
 
