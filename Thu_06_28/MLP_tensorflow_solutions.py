@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings("ignore")
 import numpy as np
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
@@ -13,7 +15,7 @@ def main():
 
     # Python optimisation variables
     learning_rate = 0.5
-    epochs = 25
+    epochs = 10
     batch_size = 100
 
     # declare the training data placeholders
@@ -35,28 +37,28 @@ def main():
     # and the weights connecting the hidden layer to the output layer
 
 ### For Task 1 :
-    W2 = tf.Variable(tf.random_normal([300, 10], stddev=0.03), name='W2')
-    b2 = tf.Variable(tf.random_normal([10]), name='b2')
+    # W2 = tf.Variable(tf.random_normal([300, 10], stddev=0.03), name='W2')
+    # b2 = tf.Variable(tf.random_normal([10]), name='b2')
 
-    # W2 = tf.Variable(tf.random_normal([300, 100], stddev=0.03), name='W2')
-    # b2 = tf.Variable(tf.random_normal([100]), name='b2')
+    W2 = tf.Variable(tf.random_normal([300, 100], stddev=0.03), name='W2')
+    b2 = tf.Variable(tf.random_normal([100]), name='b2')
 
 
 # Similarly calculate the output of hidden2 layer
 # Please fill Code HERE
 # This will be commented for Task 1
 
-    # hidden2 = tf.add(tf.matmul(hidden1_out, W2), b2)
-    # hidden2_out = tf.nn.relu(hidden2)
-    #
-    # W3 = tf.Variable(tf.random_normal([100, 10], stddev=0.03), name='W3')
-    # b3 = tf.Variable(tf.random_normal([10]), name='b3')
+    hidden2 = tf.add(tf.matmul(hidden1_out, W2), b2)
+    hidden2_out = tf.nn.relu(hidden2)
+
+    W3 = tf.Variable(tf.random_normal([100, 10], stddev=0.03), name='W3')
+    b3 = tf.Variable(tf.random_normal([10]), name='b3')
 
     # now calculate the hidden layer output - in this case, let's use a softmax activated
     # output layer for task 1:
     # y_ = tf.nn.softmax(tf.add(tf.matmul(hidden1_out, W2), b2))
     # output layer
-    y_ = tf.nn.softmax(tf.add(tf.matmul(hidden1_out, W2), b2))
+    y_ = tf.nn.softmax(tf.add(tf.matmul(hidden2_out, W3), b3))
 
     # now let's define the cost function which we are going to train the model on
     y_clipped = tf.clip_by_value(y_, 1e-10, 0.9999999)
@@ -112,7 +114,8 @@ def main():
             frame1 = plt.gca()
             frame1.axes.get_xaxis().set_visible(False)
             frame1.axes.get_yaxis().set_visible(False)
-        plt.show()
+        plt.savefig('./mnist_mlp_weights.png')
+        #plt.show()
 
 if __name__ == '__main__':
     main()
