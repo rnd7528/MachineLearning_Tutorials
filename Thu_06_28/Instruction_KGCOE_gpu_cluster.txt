@@ -1,0 +1,20 @@
+Login to kgcoe-cluster01.main.ad.rit.edu – this will automatically put in the partition.
+
+Once logged in – start an interactive session with gpu access with the scheduler:
+
+#sinteractive --gres=gpu
+
+Answer any resource questions for your reservation/allocation ie: 
+- 4 cores
+- 10000 MB RAM 
+- 550minutes 
+- QOS = “free” 
+- Partition = “kgcoe-gpu”
+
+#Module load module_future
+
+#Module load singularity
+
+#Singularity run /opt/singularity/images/tensorflow_0.0.5_e9744a3d1cafc8687b86b9d5397ef4fa64d9c361.img 
+
+If GPU not working, then: “nvidia-cuda-mps-server"
