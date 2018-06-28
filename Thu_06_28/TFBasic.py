@@ -63,17 +63,7 @@ print(sess.run(hello))
 
 # a) A=  np.linspace(2.0, 3.0, num=5)
 
-#Soln:
-
-A= tf.lin_space(2.0, 3.0, 5)
-print (A.eval())
-
 # b) A= np.stack((np.array([1, 2, 3]), np.array([2, 3, 4])))
-
-#Soln:
-
-A = tf.stack((np.array([1, 2, 3]), np.array([2, 3, 4])))
-print (A.eval())
 
 # c) A= np.reshape(np.ones((2,2)), (1,4))
 
