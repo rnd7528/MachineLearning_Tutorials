@@ -78,15 +78,23 @@ def RNN(x, weights, biases):
     # (eg. [had] [a] [general] -> [20] [6] [33])
     x = tf.split(x,n_input,1)
 
-    # 2-layer LSTM, each layer has n_hidden units.
-    # Average Accuracy= 95.20% at 50k iter
-    rnn_cell = rnn.MultiRNNCell([rnn.BasicLSTMCell(n_hidden),rnn.BasicLSTMCell(n_hidden)])
-
     # 1-layer LSTM with n_hidden units but with lower accuracy.
     # Average Accuracy= 90.60% 50k iter
     # Uncomment line below to test but comment out the 2-layer rnn.MultiRNNCell above
-    # rnn_cell = rnn.BasicLSTMCell(n_hidden)
+    rnn_cell = rnn.BasicLSTMCell(n_hidden)
 
+ ################ Task 1 ####################
+ ######## Fill in the code below ###################
+ 
+    # Comment the layer 1 rnn_cell line above before proceeding. 
+    # In this task, we shall define a Multi layer RNN model.
+    # For this purpose, we shall use the Tensorflow command, 
+    # rnn.MultiRNNCell([]), which stacks multiple rnn.BasicLSTMCell() together
+    
+    # Define a 2 layer LSTM with n_hidden units by 2 rnn.BasicLSTMCell() in rnn.MultiRNNCell()
+    # rnn_cell = 
+ ##########################################
+    
     # generate prediction
     outputs, states = rnn.static_rnn(rnn_cell, x, dtype=tf.float32)
 
@@ -149,11 +157,11 @@ with tf.Session() as session:
     print("Optimization Finished!")
     print("Elapsed time: ", elapsed(time.time() - start_time))
     print("Run on command line.")
-    print("\ttensorboard --logdir=%s" % (logs_path))
-    print("Point your web browser to: http://localhost:6006/")
+    print("\ttensorboard --logdir=%s --port=8080" % (logs_path))
+    print("Point your web browser to the URL mentioned")
     while True:
         prompt = "%s words: " % n_input
-        sentence = input(prompt)
+        sentence = raw_input(prompt)
         sentence = sentence.strip()
         words = sentence.split(' ')
         if len(words) != n_input:
@@ -170,3 +178,13 @@ with tf.Session() as session:
             print(sentence)
         except:
             print("Word not in dictionary")
+            
+            
+ ################# Task 2 ###########################
+ 
+ # Now change the training file on line 27 to ./lstm/wonderland.txt and run the code.
+ # Also, create any random text file on the server and change the training file path and test your code for that text.
+ 
+ 
+ ############################################
+ 
